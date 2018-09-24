@@ -10,13 +10,14 @@ source:
 
 build:
   number: 1000
+  noarch: python
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   entry_points:
     - reindent = reindent:main
   skip: True  # [py3k]
 
 requirements:
-  build:
+  host:
     - python
     - pip
   run:
