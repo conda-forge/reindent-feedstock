@@ -1,20 +1,16 @@
-{% set name = "Reindent" %}
 {% set version = "0.1.1" %}
-{% set file_ext = "tar.gz" %}
-{% set sha256 = "d61226a0d0109aef3495033b42e8a0258c6bef1c014d9f26e31c62f071352b82" %}
 
 package:
-  name: '{{ name|lower }}'
-  version: '{{ version }}'
+  name: reindent
+  version: {{ version }}
 
 source:
-  fn: '{{ name }}-{{ version }}.{{ file_ext }}'
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.{{ file_ext }}
-  sha256: '{{ sha256 }}'
+  url: https://pypi.io/packages/source/R/Reindent/Reindent-{{ version }}.tar.gz
+  sha256: d61226a0d0109aef3495033b42e8a0258c6bef1c014d9f26e31c62f071352b82
 
 build:
   number: 1000
-  script: python setup.py install
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   entry_points:
     - reindent = reindent:main
   skip: True  # [py3k]
@@ -22,6 +18,7 @@ build:
 requirements:
   build:
     - python
+    - pip
   run:
     - python
 
