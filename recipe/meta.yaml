@@ -14,14 +14,13 @@ build:
   script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
   entry_points:
     - reindent = reindent:main
-  skip: True  # [py3k]
 
 requirements:
   host:
-    - python
+    - python <3
     - pip
   run:
-    - python
+    - python <3
 
 test:
   imports:
