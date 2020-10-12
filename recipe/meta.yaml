@@ -1,26 +1,27 @@
-{% set version = "0.1.1" %}
+{% set name = "reindent" %}
+{% set version = "3.5.1" %}
 
 package:
-  name: reindent
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/R/Reindent/Reindent-{{ version }}.tar.gz
-  sha256: d61226a0d0109aef3495033b42e8a0258c6bef1c014d9f26e31c62f071352b82
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 59aeb8fbc16e45686f65df23b91896a17eb14ace7a7546860f50d2bb5ec4c9c0
 
 build:
-  number: 1000
   noarch: python
-  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv"
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
   entry_points:
     - reindent = reindent:main
 
 requirements:
   host:
-    - python <3
     - pip
+    - python
   run:
-    - python <3
+    - python
 
 test:
   imports:
@@ -29,14 +30,13 @@ test:
     - echo "pass" | reindent
 
 about:
-  home: https://pypi.python.org/pypi/Reindent
+  home: https://pypi.python.org/pypi/reindent
   license: Public Domain
   license_family: PUBLIC-DOMAIN
-  license_file: 'README.txt'
+  license_file: 'README.md'
   summary: reindent script by Tim Peters
   description: |
     Reindent python cleanup script
-    
     Change Python (.py) files to use 4-space indents and no hard
     tab characters.  Also trim excess spaces and tabs from ends of
     lines, and remove empty lines at the end of files.  Also
