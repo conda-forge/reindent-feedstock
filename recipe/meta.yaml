@@ -12,14 +12,15 @@ source:
 build:
   noarch: python
   number: 2
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - reindent = reindent:main
 
 requirements:
   host:
-    - pip
     - python {{ python_min }}
+    - setuptools
+    - pip
   run:
     - python >={{ python_min }}
 
